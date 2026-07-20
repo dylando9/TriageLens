@@ -90,7 +90,8 @@ Application code and executable tests will be added after the dataset and labeli
 
 Day 1 complete: repository foundation, scope, disclaimer, and Python environment configuration.
 
+Day 2 complete: data-source review and provisional selection of the 2022 NHAMCS Emergency Department Public Use File. See [docs/data_source_review.md](docs/data_source_review.md). The urgency-label mapping remains provisional until the Day 3 data audit.
+
 ## License and data provenance
 
-A project license and dataset-specific licensing notes will be added after the Day 2 data-source review. No dataset has been selected or redistributed yet.
-
+A project license has not yet been selected. Dataset provenance and source-specific terms are documented in [docs/data_source_review.md](docs/data_source_review.md). Raw third-party data is not redistributed in this repository.
