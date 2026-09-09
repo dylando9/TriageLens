@@ -2,7 +2,7 @@
 
 ## Problem statement
 
-People commonly describe symptoms in inconsistent language. TriageLens explores whether a supervised classifier can map a controlled, structured set of symptom and context features to broad urgency categories while exposing the factors that influenced its output.
+People commonly describe symptoms in inconsistent language. TriageLens explores whether a supervised classifier can map a controlled, structured set of symptom and context features to broad acuity categories while exposing the factors that influenced its output.
 
 The project is intended to demonstrate an end-to-end ML workflow. It is not intended to establish clinical efficacy.
 
@@ -49,4 +49,3 @@ Free-text extraction, LLM-generated wording, and the web frontend are later mile
 - Which authoritative triage references can support the labeling framework?
 - Which records are too ambiguous to label responsibly and should be excluded?
 - What minimum feature set can be supported by the chosen data?
-

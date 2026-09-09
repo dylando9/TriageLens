@@ -2,9 +2,9 @@
 
 ## Decision
 
-Using the **2022 National Hospital Ambulatory Medical Care Survey (NHAMCS) Emergency Department Public Use File** as the provisional Version 1 data source.
+Use the **2022 National Hospital Ambulatory Medical Care Survey (NHAMCS) Emergency Department Public Use File** as the Version 1 data source. Day 3 validated this decision against the downloaded public-use file.
 
-This is a data-source decision, not approval of a final modeling target. Day 3 will validate the label mapping, quantify exclusions and missingness, and confirm that the selected predictors are available at triage time.
+Day 3 validated the source and revised the final class name from `routine` to `lower_acuity`. See [the Day 3 audit](day3_data_audit.md) for measured class counts, exclusions, missingness, and the initial leakage-safe feature boundary.
 
 ## Dataset requirements
 
@@ -26,7 +26,7 @@ Convenience datasets without an authoritative data dictionary, provenance, or us
 
 | Candidate | Strengths | Blocking limitations | Decision |
 | --- | --- | --- | --- |
-| 2022 NHAMCS ED public-use file | CDC/NCHS source; 16,025 sampled ED visits; structured reasons for visit, initial vital signs, pain, age, and nurse-triage immediacy; public-use download and extensive documentation | Survey represents visits rather than people; target is an operational triage assessment, not a patient outcome; `IMMEDR` has 27.8% nonresponse and is not imputed; symptom reasons are coded rather than free text | **Select provisionally** |
+| 2022 NHAMCS ED public-use file | CDC/NCHS source; 16,025 sampled ED visits; structured reasons for visit, initial vital signs, pain, age, and nurse-triage immediacy; public-use download and extensive documentation | Survey represents visits rather than people; target is an operational triage assessment, not a patient outcome; `IMMEDR` has substantial nonresponse and is not imputed; symptom reasons are coded rather than free text | **Selected and validated on Day 3** |
 | MIMIC-IV-ED v2.2 | Detailed ED data; numeric vital signs, pain, free-text chief complaint, and 1–5 acuity | Credentialing, CITI training, a signed data-use agreement, and restricted redistribution make onboarding and a reproducible public portfolio harder; single-center data | Reject for Version 1; reconsider for private follow-up research |
 | Synthea | Fully synthetic records; no real-patient privacy risk; reproducible generator; Apache-2.0 licensed | A simulated record is not evidence that an urgency label reflects real triage practice; additional authored rules would determine both cases and labels, creating circular evaluation | Keep only as a demo/test-data fallback |
 
@@ -67,7 +67,7 @@ Only information plausibly available at or before triage should be considered as
 
 Fields created after triage—diagnoses, procedures, medications, disposition, admission, wait time, and length of visit—must not be model inputs because they leak downstream information.
 
-## Provisional label mapping for Day 3 review
+## Label mapping validated on Day 3
 
 The source has five valid triage levels. TriageLens needs three educational project categories. The simplest auditable mapping to test is:
 
@@ -76,12 +76,12 @@ The source has five valid triage levels. TriageLens needs three educational proj
 | `1` Immediate | `emergent` |
 | `2` Emergent | `emergent` |
 | `3` Urgent | `urgent` |
-| `4` Semi-urgent | `routine` |
-| `5` Nonurgent | `routine` |
+| `4` Semi-urgent | `lower_acuity` |
+| `5` Nonurgent | `lower_acuity` |
 
 Values for blank (`-9`), unknown (`-8`), no triage (`0`), and facilities without nursing triage (`7`) should be excluded from supervised training rather than guessed.
 
-This mapping is provisional. In particular, the project term `routine` may overstate the safety of an ED visit labeled semi-urgent. Day 3 must either justify the terminology, rename the project class, or document a more conservative mapping before any model is trained.
+The original project term `routine` was rejected because it could overstate the safety of a semi-urgent ED visit. `lower_acuity` describes only the relative source category and does not imply that care can safely be delayed.
 
 ## Access, licensing, and redistribution
 
@@ -113,15 +113,15 @@ Do not manually edit the source file.
 6. Write all cleaned outputs to `data/processed/`, which is ignored by Git.
 7. Commit only acquisition/preparation code, the manifest, and documentation—not generated data unless redistribution is explicitly approved.
 
-## Day 3 entry criteria
+## Day 3 resolution
 
-Day 3 should not begin modeling until it has:
+The Day 3 audit completed the following pre-modeling checks:
 
 - downloaded and checksummed the official archive;
 - profiled target counts and missingness without changing the raw file;
 - verified exact column names and dtypes;
 - documented inclusion and exclusion rules;
-- resolved whether `routine` is an acceptable name for combined semi-urgent/nonurgent visits;
+- replaced `routine` with `lower_acuity` for combined semi-urgent/nonurgent visits;
 - checked whether a three-class split leaves enough emergent examples for stratified train/validation/test sets;
 - defined a leakage-safe, structured Version 1 feature set;
 - documented how survey weights will and will not be used.

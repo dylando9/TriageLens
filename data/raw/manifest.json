@@ -1,0 +1,16 @@
+{
+  "dataset": "2022 NHAMCS Emergency Department Public Use File",
+  "publisher": "CDC National Center for Health Statistics",
+  "retrieved_at": "2026-07-20",
+  "source_url": "https://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/NHAMCS/stata/ed2022-stata.zip",
+  "archive": {
+    "filename": "ed2022-stata.zip",
+    "sha256": "aa32e635ef9564b1c8e03cea16c87ec2ed02e9a928d22a257df18100a38ad683"
+  },
+  "extracted_file": {
+    "filename": "ed2022-stata.dta",
+    "sha256": "0e00cd5aea4511cd619f7af1e0dc2f6825f111b7c87d3ebbb1358410a4c881c2"
+  },
+  "expected_rows": 16025,
+  "documentation_url": "https://ftp.cdc.gov/pub/health_statistics/nchs/dataset_documentation/NHAMCS/doc22-ed-508.pdf"
+}

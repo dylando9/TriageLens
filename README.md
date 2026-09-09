@@ -1,6 +1,6 @@
 # TriageLens
 
-TriageLens is a portfolio project that classifies structured symptom information into one of three urgency tiers: `emergent`, `urgent`, or `routine`. The project will emphasize transparent evaluation, explainable predictions, and responsible use of language models.
+TriageLens is a portfolio project that classifies structured symptom information into one of three acuity tiers: `emergent`, `urgent`, or `lower_acuity`. The project will emphasize transparent evaluation, explainable predictions, and responsible use of language models.
 
 > **Important:** TriageLens is a learning project, not a medical device or diagnostic tool. It must not be used to make healthcare decisions or replace evaluation by a qualified healthcare professional. If someone may be experiencing a medical emergency, they should contact local emergency services.
 
@@ -23,7 +23,7 @@ Version 1 accepts a structured symptom checklist and returns an educational urge
 | --- | --- |
 | `emergent` | The educational ruleset flags the case for immediate emergency evaluation. |
 | `urgent` | The educational ruleset flags the case for prompt, same-day evaluation. |
-| `routine` | The educational ruleset does not identify an immediate or same-day flag. |
+| `lower_acuity` | The source triage assessment is below the emergent and urgent tiers. This does not mean that care is unnecessary or can safely be delayed. |
 
 These labels are project categories, not clinical determinations.
 
@@ -90,7 +90,9 @@ Application code and executable tests will be added after the dataset and labeli
 
 Day 1 complete: repository foundation, scope, disclaimer, and Python environment configuration.
 
-Day 2 complete: data-source review and provisional selection of the 2022 NHAMCS Emergency Department Public Use File. See [docs/data_source_review.md](docs/data_source_review.md). The urgency-label mapping remains provisional until the Day 3 data audit.
+Day 2 complete: data-source review and selection of the 2022 NHAMCS Emergency Department Public Use File. See [docs/data_source_review.md](docs/data_source_review.md).
+
+Day 3 complete: the source file, schema, target distribution, missingness, exclusions, label mapping, and leakage-safe feature boundary have been audited. See [docs/day3_data_audit.md](docs/day3_data_audit.md).
 
 ## License and data provenance
 
