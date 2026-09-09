@@ -78,7 +78,9 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Application code and executable tests will be added after the dataset and labeling approach are selected.
+The repository currently includes the reproducible Day 3 data-audit script and its
+automated tests. Preprocessing, modeling, API, and frontend code will be added in
+later milestones.
 
 ## Roadmap
 

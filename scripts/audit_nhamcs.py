@@ -68,18 +68,24 @@ def count_values(series: pd.Series) -> dict[str, int]:
     return {str(key): int(value) for key, value in counts.items()}
 
 
+def validate_checksum(path: Path, expected_hash: str) -> str:
+    """Require a manifest file and verify its SHA-256 checksum."""
+    if not path.exists():
+        raise FileNotFoundError(f"Missing {path}.")
+
+    actual_hash = sha256(path)
+    if actual_hash != expected_hash:
+        raise ValueError(f"SHA-256 mismatch for {path.name}: {actual_hash}")
+    return actual_hash
+
+
 def audit(manifest_path: Path) -> dict[str, Any]:
     manifest = json.loads(manifest_path.read_text())
+    archive_path = manifest_path.parent / manifest["archive"]["filename"]
     data_path = manifest_path.parent / manifest["extracted_file"]["filename"]
 
-    if not data_path.exists():
-        raise FileNotFoundError(
-            f"Missing {data_path}. Download and extract the archive listed in {manifest_path}."
-        )
-    actual_hash = sha256(data_path)
-    expected_hash = manifest["extracted_file"]["sha256"]
-    if actual_hash != expected_hash:
-        raise ValueError(f"SHA-256 mismatch for {data_path.name}: {actual_hash}")
+    archive_hash = validate_checksum(archive_path, manifest["archive"]["sha256"])
+    data_hash = validate_checksum(data_path, manifest["extracted_file"]["sha256"])
 
     frame = pd.read_stata(data_path, convert_categoricals=False)
     if len(frame) != manifest["expected_rows"]:
@@ -115,7 +121,8 @@ def audit(manifest_path: Path) -> dict[str, Any]:
             for key, value in label_counts.items()
         },
         "feature_missingness": feature_missingness,
-        "data_sha256": actual_hash,
+        "archive_sha256": archive_hash,
+        "data_sha256": data_hash,
     }
 
 

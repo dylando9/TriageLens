@@ -17,7 +17,7 @@ python scripts/audit_nhamcs.py
 pytest
 ```
 
-The audit validates the extracted file's checksum, row count, and required columns before writing a generated report to `data/processed/day3_audit.json`.
+The audit validates the archive and extracted-file checksums, row count, and required columns before writing a generated report to `data/processed/day3_audit.json`.
 
 ## Target audit
 
