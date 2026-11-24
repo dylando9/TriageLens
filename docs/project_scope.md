@@ -1,5 +1,11 @@
 # Project Scope
 
+## Abbreviations
+
+- Application programming interface (API)
+- Large language model (LLM)
+- Machine learning (ML)
+
 ## Problem statement
 
 People commonly describe symptoms in inconsistent language. TriageLens explores whether a supervised classifier can map a controlled, structured set of symptom and context features to broad acuity categories while exposing the factors that influenced its output.

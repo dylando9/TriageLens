@@ -1,8 +1,42 @@
 # Day 2 Data Source Review
 
+## Abbreviations
+
+- Centers for Disease Control and Prevention (CDC)
+- Collaborative Institutional Training Initiative (CITI)
+- Emergency department (ED)
+- Medical Information Mart for Intensive Care IV Emergency Department
+  (MIMIC-IV-ED)
+- National Center for Health Statistics (NCHS)
+- National Hospital Ambulatory Medical Care Survey (NHAMCS)
+- National Hospital Care Survey (NHCS)
+- Reason for Visit (RFV)
+- Secure Hash Algorithm 256-bit (SHA-256)
+- Uniform resource locator (URL)
+- United States (U.S.)
+
+## Source field names
+
+- Age (AGE)
+- Arrival by ambulance (ARREMS)
+- Diastolic blood pressure (BPDIAS)
+- Episode of care (EPISODE)
+- Heart rate (PULSE)
+- Immediacy with which the patient should be seen (IMMEDR)
+- Masked primary sampling unit (CPSUM)
+- Masked stratum (CSTRATM)
+- Pain scale (PAINSCALE)
+- Patient visit weight (PATWT)
+- Pulse oximetry percentage (POPCT)
+- Reason for visit positions 1 through 5 (RFV1–RFV5)
+- Respiratory rate (RESPR)
+- Seen in the emergency department within the prior 72 hours (SEEN72)
+- Systolic blood pressure (BPSYS)
+- Temperature in degrees Fahrenheit (TEMPF)
+
 ## Decision
 
-Use the **2022 National Hospital Ambulatory Medical Care Survey (NHAMCS) Emergency Department Public Use File** as the Version 1 data source. Day 3 validated this decision against the downloaded public-use file.
+Use the **2022 NHAMCS Emergency Department Public Use File** as the Version 1 data source. Day 3 validated this decision against the downloaded public-use file.
 
 Day 3 validated the source and revised the final class name from `routine` to `lower_acuity`. See [the Day 3 audit](day3_data_audit.md) for measured class counts, exclusions, missingness, and the initial leakage-safe feature boundary.
 
@@ -32,7 +66,7 @@ Convenience datasets without an authoritative data dictionary, provenance, or us
 
 ## Selected source
 
-**Publisher:** National Center for Health Statistics (NCHS), Centers for Disease Control and Prevention (CDC)
+**Publisher:** NCHS, CDC
 
 **Survey:** National Hospital Ambulatory Medical Care Survey, Emergency Department component
 

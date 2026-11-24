@@ -1,5 +1,30 @@
 # Day 3 Data Audit and Label Framework
 
+## Abbreviations
+
+- Emergency department (ED)
+- National Hospital Ambulatory Medical Care Survey (NHAMCS)
+- Reason for Visit (RFV)
+
+## Source field names
+
+- Age (AGE)
+- Arrival by ambulance (ARREMS)
+- Diastolic blood pressure (BPDIAS)
+- Episode of care (EPISODE)
+- Heart rate (PULSE)
+- Immediacy with which the patient should be seen (IMMEDR)
+- Masked primary sampling unit (CPSUM)
+- Masked stratum (CSTRATM)
+- Pain scale (PAINSCALE)
+- Patient visit weight (PATWT)
+- Pulse oximetry percentage (POPCT)
+- Reason for visit positions 1 through 5 (RFV1–RFV5)
+- Respiratory rate (RESPR)
+- Seen in the emergency department within the prior 72 hours (SEEN72)
+- Systolic blood pressure (BPSYS)
+- Temperature in degrees Fahrenheit (TEMPF)
+
 ## Outcome
 
 The 2022 NHAMCS Emergency Department public-use file is suitable for the first TriageLens modeling iteration, subject to the limitations below. The audit found 16,025 rows and 913 columns, matching the official documentation. There are no exact duplicate rows.

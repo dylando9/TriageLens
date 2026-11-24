@@ -1,5 +1,13 @@
 # TriageLens
 
+## Abbreviations
+
+- Application programming interface (API)
+- Exploratory data analysis (EDA)
+- Large language model (LLM)
+- Machine learning (ML)
+- National Hospital Ambulatory Medical Care Survey (NHAMCS)
+
 TriageLens is a portfolio project that classifies structured symptom information into one of three acuity tiers: `emergent`, `urgent`, or `lower_acuity`. The project will emphasize transparent evaluation, explainable predictions, and responsible use of language models.
 
 > **Important:** TriageLens is a learning project, not a medical device or diagnostic tool. It must not be used to make healthcare decisions or replace evaluation by a qualified healthcare professional. If someone may be experiencing a medical emergency, they should contact local emergency services.
@@ -45,7 +53,7 @@ See [docs/project_scope.md](docs/project_scope.md) for the working boundaries an
 Next.js + TypeScript frontend
             |
             v
-       FastAPI API
+       FastAPI service
             |
             v
 Safety rules -> ML classifier -> feature explanation
@@ -78,8 +86,8 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-The repository currently includes the reproducible Day 3 data-audit script and its
-automated tests. Preprocessing, modeling, API, and frontend code will be added in
+The repository currently includes reproducible data-audit and preprocessing
+scripts with automated tests. Modeling, API, and frontend code will be added in
 later milestones.
 
 ## Roadmap
@@ -95,6 +103,12 @@ Day 1 complete: repository foundation, scope, disclaimer, and Python environment
 Day 2 complete: data-source review and selection of the 2022 NHAMCS Emergency Department Public Use File. See [docs/data_source_review.md](docs/data_source_review.md).
 
 Day 3 complete: the source file, schema, target distribution, missingness, exclusions, label mapping, and leakage-safe feature boundary have been audited. See [docs/day3_data_audit.md](docs/day3_data_audit.md).
+
+Day 4 complete: eligible records are cleaned and divided into deterministic,
+stratified, duplicate-group-safe training, validation, and test datasets. EDA is
+limited to the training split, with an interactive review notebook for charts and
+manual checks. See [docs/day4_preprocessing_eda.md](docs/day4_preprocessing_eda.md)
+and [notebooks/day4_preprocessing_review.ipynb](notebooks/day4_preprocessing_review.ipynb).
 
 ## License and data provenance
 
